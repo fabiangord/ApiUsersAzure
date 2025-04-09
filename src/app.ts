@@ -1,4 +1,8 @@
 import express from 'express'
+import cors from 'cors'
+import morgan from 'morgan'
+import fileUpload from 'express-fileupload'
+import dotenv from 'dotenv'
 import { HandlerUserRouter } from './routes/handler-user.router'
 
 class Server {
@@ -9,12 +13,16 @@ class Server {
     this.app = express()
     this.port = 3000
     this.config()
-    this.routes()
     this.start()
   }
 
   private config(): void {
+    dotenv.config()
     this.app.use(express.json())
+    this.app.use(cors())
+    this.app.use(fileUpload())
+    this.app.use(morgan('dev'))
+    this.app.use('/api', this.routes())
   }
 
   private routes(): express.Router[] {

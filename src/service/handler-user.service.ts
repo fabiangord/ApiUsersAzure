@@ -1,3 +1,4 @@
+import { UploadedFile } from 'express-fileupload'
 import { HandlerUserRepository } from '../repository/handler-users.repository'
 import { UserType } from '../types/user.type'
 
@@ -26,5 +27,9 @@ export class HandlerUserService {
 
   async getImage(id: string): Promise<NodeJS.ReadableStream> {
     return await this.repository.getImage(id)
+  }
+
+  async addImage(imageUser: UploadedFile, id: string): Promise<void> {
+    return await this.repository.addImage(imageUser, id)
   }
 }

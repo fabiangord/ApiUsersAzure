@@ -1,6 +1,7 @@
 import { UserType } from '../types/user.type'
 // import { prisma } from '../config/database'
 import { BlobConfig } from '../config/blob'
+import { UploadedFile } from 'express-fileupload'
 
 export class HandlerUserRepository {
   async getUsers(): Promise<void> {
@@ -37,8 +38,11 @@ export class HandlerUserRepository {
     return downloadBlob.readableStreamBody
   }
 
-  async addImage(_nameImage: string): Promise<void> {
+  async addImage(imageUser: UploadedFile, id: string): Promise<void> {
     const client = BlobConfig.getConnectionBlob('conteinesimages')
-    console.log(client)
+
+    const blob = (await client).getBlockBlobClient(id)
+    console.log(imageUser)
+    await blob.uploadData(imageUser.data)
   }
 }

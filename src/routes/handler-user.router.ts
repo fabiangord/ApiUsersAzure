@@ -16,5 +16,6 @@ export class HandlerUserRouter {
     this.route.patch('/user', async (req, res) => await this.controller.updateUser(req, res))
     this.route.delete('/user', async (req, res) => await this.controller.deleteUser(req, res))
     this.route.get('/image', async (req, res) => await this.controller.getImage(req, res))
+    this.route.post('/addImage/:id', async (req, res) => await this.controller.addImage(req, res))
   }
 }

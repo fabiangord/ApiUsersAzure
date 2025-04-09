@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { HandlerUserService } from '../service/handler-user.service'
 import { UserType } from '../types/user.type'
+import { UploadedFile } from 'express-fileupload'
 
 export class HandlerUserController {
   constructor(private readonly service: HandlerUserService = new HandlerUserService()) { }
@@ -57,8 +58,25 @@ export class HandlerUserController {
 
       const stream = await this.service.getImage(idUser)
 
-      stream.pipe(res)
+      res.json(stream)
     } catch (error) {
+      error instanceof Error ? res.status(400).json({ message: error.message }) : res.status(400).json(`unexpected error ${error}`)
+    }
+  }
+
+  async addImage(req: Request, res: Response): Promise<void> {
+    try {
+      const id: string = req.params.id
+
+      const imageUser = req.files?.File as UploadedFile
+
+      console.log('b', req.files)
+
+      await this.service.addImage(imageUser, id)
+
+      res.json(200)
+    } catch (error) {
+      console.log(error)
       error instanceof Error ? res.status(400).json({ message: error.message }) : res.status(400).json(`unexpected error ${error}`)
     }
   }
