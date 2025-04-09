@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { HandlerUserService } from "../service/handler-user.service";
-import { UserType } from "../types/user.type";
+import { Request, Response } from 'express'
+import { HandlerUserService } from '../service/handler-user.service'
+import { UserType } from '../types/user.type'
 
 export class HandlerUserController {
   constructor(private readonly service: HandlerUserService = new HandlerUserService()) { }
@@ -15,7 +15,7 @@ export class HandlerUserController {
 
   async getUser(_req: Request, res: Response): Promise<void> {
     try {
-      res.status(200).json(await this.service.getUser());
+      res.status(200).json(await this.service.getUser())
     } catch (error) {
       error instanceof Error ? res.status(400).json({ message: error.message }) : res.status(400).json(`unexpected error ${error}`)
     }
@@ -23,9 +23,9 @@ export class HandlerUserController {
 
   async addUser(req: Request, res: Response): Promise<void> {
     try {
-      const user = req.body as UserType;
+      const user = req.body as UserType
 
-      res.status(200).json(this.service.addUser(user));
+      res.status(200).json(this.service.addUser(user))
     } catch (error) {
       error instanceof Error ? res.status(400).json({ message: error.message }) : res.status(400).json(`unexpected error ${error}`)
     }
@@ -33,9 +33,9 @@ export class HandlerUserController {
 
   async updateUser(req: Request, res: Response): Promise<void> {
     try {
-      const user = req.body as UserType;
+      const user = req.body as UserType
 
-      res.status(200).json(this.service.updateUser(user));
+      res.status(200).json(this.service.updateUser(user))
     } catch (error) {
       error instanceof Error ? res.status(400).json({ message: error.message }) : res.status(400).json(`unexpected error ${error}`)
     }
@@ -45,7 +45,7 @@ export class HandlerUserController {
     try {
       const idUser: string = req.params.idUser
 
-      res.status(200).json(this.service.deleteUser(idUser));
+      res.status(200).json(this.service.deleteUser(idUser))
     } catch (error) {
       error instanceof Error ? res.status(400).json({ message: error.message }) : res.status(400).json(`unexpected error ${error}`)
     }
@@ -62,5 +62,4 @@ export class HandlerUserController {
       error instanceof Error ? res.status(400).json({ message: error.message }) : res.status(400).json(`unexpected error ${error}`)
     }
   }
-
 }

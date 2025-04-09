@@ -25,6 +25,6 @@ export class HandlerUserService {
   }
 
   async getImage(id: string): Promise<NodeJS.ReadableStream> {
-    return this.repository.getImage(id)
+    return await this.repository.getImage(id)
   }
 }

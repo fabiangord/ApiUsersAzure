@@ -37,6 +37,8 @@
       "@typescript-eslint/no-misused-promises": "off",
       "@typescript-eslint/no-unused-expressions": "off",
       "@typescript-eslint/strict-boolean-expressions": "off",
+      "@typescript-eslint/consistent-type-definitions": "off",
+      "@typescript-eslint/no-extraneous-class": "off",
       "no-unneeded-ternary": "off"
     },
     "ignorePatterns": [
