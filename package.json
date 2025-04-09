@@ -1,0 +1,47 @@
+{
+  "name": "api-arquitec-servidores",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "ts-node-dev src/app.ts",
+    "build-start": "npm run build && node dist/app.js",
+    "build": "npx tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "prisma": "^6.6.0",
+    "ts-standard": "^12.0.2",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@azure/storage-blob": "^12.27.0",
+    "@prisma/client": "^6.6.0",
+    "express": "^5.1.0",
+    "ts-node-dev": "^2.0.0"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "extends": [
+      "./node_modules/ts-standard/eslintrc.json"
+    ],
+    "rules": {
+      "@typescript-eslint/space-before-function-paren": "off",
+      "@typescript-eslint/restrict-template-expressions": "off",
+      "@typescript-eslint/no-misused-promises": "off",
+      "@typescript-eslint/no-unused-expressions": "off",
+      "@typescript-eslint/strict-boolean-expressions": "off",
+      "no-unneeded-ternary": "off"
+    },
+    "ignorePatterns": [
+      "build",
+      "test"
+    ]
+  }
+}
